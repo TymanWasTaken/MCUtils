@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mcutils",
+  "name": "MCUtils",
+  "description": "A mod with basic utils for mc.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Tyman"],
+  "credits": "e",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
