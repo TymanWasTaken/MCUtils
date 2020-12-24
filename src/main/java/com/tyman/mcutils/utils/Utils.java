@@ -15,8 +15,7 @@ public class Utils {
 
     public static Pattern lobbyRegex = Pattern.compile("(mini|mega|m|M)([0-9]{1,3}[A-Z])");
 
-    public static int getSlayerColor() throws IllegalArgumentException {
-        int configValue = MCUtilsConfig.slayerHudColor;
+    public static int getColorFromConfig(int configValue) {
         int realColor;
         switch (configValue) {
             case 0: {
@@ -51,16 +50,20 @@ public class Utils {
         return realColor;
     }
 
-    // BROKEN
     public static boolean isOnSkyblock() {
         return ScoreboardUtils.hasSkyblockScoreboard(Minecraft.getMinecraft().theWorld.getScoreboard());
     }
+
     public static boolean isInHub() {
         Minecraft mc = Minecraft.getMinecraft();
         if (isOnSkyblock() && mc.theWorld.getScoreboard() != null) {
             List<String> scoreboard = ScoreboardUtils.getSidebarLines();
-            Matcher matcher = lobbyRegex.matcher(scoreboard.get(13));
-            return matcher.find();
+            boolean found = false;
+            for (String line : scoreboard) {
+                Matcher matcher = lobbyRegex.matcher(line);
+                found = matcher.find();
+            }
+            return found;
         }
         return false;
     }

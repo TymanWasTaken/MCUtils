@@ -9,6 +9,12 @@ import java.io.File;
 @SuppressWarnings("unused")
 public class MCUtilsConfig extends Vigilant {
 
+    /*******************
+            Gui
+    ********************/
+
+    // Slayers
+
     @Property(
             type = PropertyType.SWITCH,
             name = "Slayer Health Gui",
@@ -56,6 +62,63 @@ public class MCUtilsConfig extends Vigilant {
             options = {"green", "yellow", "red", "blue", "orange", "black"}
     )
     public static int slayerHudColor;
+
+    // Inventory
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Inventory hud",
+            description = "Shows how full your inventory is",
+            category = "Gui",
+            subcategory = "Inventory"
+    )
+    public static boolean invHud;
+
+    @Property(
+            type = PropertyType.SLIDER,
+            max = 100,
+            name = "X percentage",
+            description = "Percentage of X value of inventory hud",
+            category = "Gui",
+            subcategory = "Inventory"
+    )
+    public static int invHudX;
+
+    @Property(
+            type = PropertyType.SLIDER,
+            max = 100,
+            name = "Y percentage",
+            description = "Percentage of Y value of inventory hud",
+            category = "Gui",
+            subcategory = "Inventory"
+    )
+    public static int invHudY;
+
+    @Property(
+            type = PropertyType.SELECTOR,
+            name = "Inventory Gui Color",
+            category = "Gui",
+            subcategory = "Inventory",
+            description = "Choose what color the inventory gui is",
+            options = {"green", "yellow", "red", "blue", "orange", "black"}
+    )
+    public static int invHudColor;
+
+//    @Property(
+//            type = PropertyType.SLIDER,
+//            name = "Inventory almost full warning threshold",
+//            category = "Gui",
+//            subcategory = "Inventory",
+//            description = "How many slots full to show the warning",
+//            max = 36
+//    )
+//    public static int invWarningThreshold;
+
+    /*******************
+            QOL
+    ********************/
+
+    // Things
 
     @Property(
             type = PropertyType.SWITCH,

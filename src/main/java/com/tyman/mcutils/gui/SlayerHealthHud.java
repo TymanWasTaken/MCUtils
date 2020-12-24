@@ -58,7 +58,7 @@ public class SlayerHealthHud {
                 float realY = (float) MCUtilsConfig.slayerHudY / 100;
                 float x = mc.displayWidth * realX;
                 float y = mc.displayHeight * realY;
-                int color = Utils.getSlayerColor();
+                int color = Utils.getColorFromConfig(MCUtilsConfig.slayerHudColor);
                 //Minecraft.getMinecraft().renderEngine.bindTexture(revHead);
                 if (slayerHealth != null) {
                     mc.fontRendererObj.drawString(slayerHealth[0] + ": " + slayerHealth[1], x / 2, y / 2, color, true);
