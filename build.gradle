@@ -35,7 +35,7 @@ minecraft {
 
 dependencies {
     compile('com.fathzer:javaluator:3.0.3')
-    compile files("libs/modcore.jar")
+    provided files("libs/modcore.jar")
 }
 
 jar {
@@ -47,9 +47,18 @@ jar {
     jar {
         from {
             configurations.compile
-                .findAll { it.getAbsolutePath().startsWith("club.sk1er") || it.getAbsolutePath().startsWith("com.fathzer")  }
+                .findAll {
+                    it.getAbsolutePath().contains("com.fathzer")
+                }
                 .collect { it.isDirectory() ? it : zipTree(it) }
         }
+//        from {
+//            configurations.provided
+//                    .findAll {
+//                        it.getAbsolutePath().contains("libs/modcore.jar")
+//                    }
+//                    .collect { it.isDirectory() ? it : zipTree(it) }
+//        }
     }
 }
 
