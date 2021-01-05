@@ -36,7 +36,8 @@ public class MCUtilsMod
         ClientCommandHandler.instance.registerCommand(new MCUtilsCommand(this));
         MinecraftForge.EVENT_BUS.register(new SlayerHealthHud());
         MinecraftForge.EVENT_BUS.register(new InventoryHud());
-        MinecraftForge.EVENT_BUS.register(new HideHubPlayers());
+        // broken code go brrrrrrrr
+        // MinecraftForge.EVENT_BUS.register(new HideHubPlayers());
         ModCoreInstaller.initializeModCore(Minecraft.getMinecraft().mcDataDir);
     }
 }
