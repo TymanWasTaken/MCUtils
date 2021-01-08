@@ -1,10 +1,10 @@
 package com.tyman.mcutils.commands;
 
 import com.tyman.mcutils.MCUtilsMod;
+import com.tyman.mcutils.utils.MathEvaluator;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 
-import com.fathzer.soft.javaluator.DoubleEvaluator;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -35,7 +35,7 @@ public class MathCommand extends CommandBase {
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
-        DoubleEvaluator evaluator = new DoubleEvaluator();
+        MathEvaluator evaluator = new MathEvaluator();
         Double evaluation = evaluator.evaluate(String.join(" ",args));
         sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED  + "Result: " + EnumChatFormatting.AQUA + evaluation.toString()));
     }

@@ -34,7 +34,7 @@ minecraft {
 }
 
 dependencies {
-    compile('com.fathzer:javaluator:3.0.3')
+    compile('com.fathzer:javaluator:latest.integration')
     provided files("libs/modcore.jar")
 }
 
