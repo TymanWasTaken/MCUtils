@@ -1,6 +1,5 @@
-package com.tyman.mcutils.forge;
+package com.tyman.mcutils.modcore;
 
-import com.tyman.mcutils.ModCoreInstaller;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 

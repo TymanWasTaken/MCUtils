@@ -40,7 +40,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes "FMLCorePlugin": "com.tyman.mcutils.forge.FMLLoadingPlugin",
+        attributes "FMLCorePlugin": "com.tyman.mcutils.modcore.FMLLoadingPlugin",
                 "ModSide": "CLIENT",
                 "FMLCorePluginContainsFMLMod": "Yes, yes it does"
     }
@@ -52,13 +52,6 @@ jar {
                 }
                 .collect { it.isDirectory() ? it : zipTree(it) }
         }
-//        from {
-//            configurations.provided
-//                    .findAll {
-//                        it.getAbsolutePath().contains("libs/modcore.jar")
-//                    }
-//                    .collect { it.isDirectory() ? it : zipTree(it) }
-//        }
     }
 }
 

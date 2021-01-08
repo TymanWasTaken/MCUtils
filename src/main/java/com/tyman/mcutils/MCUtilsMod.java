@@ -6,7 +6,7 @@ import com.tyman.mcutils.commands.MathCommand;
 import com.tyman.mcutils.config.MCUtilsConfig;
 import com.tyman.mcutils.gui.InventoryHud;
 import com.tyman.mcutils.gui.SlayerHealthHud;
-import com.tyman.mcutils.utils.HideHubPlayers;
+import com.tyman.mcutils.modcore.ModCoreInstaller;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;

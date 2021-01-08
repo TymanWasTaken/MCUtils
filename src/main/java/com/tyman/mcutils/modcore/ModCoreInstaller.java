@@ -1,4 +1,4 @@
-package com.tyman.mcutils;
+package com.tyman.mcutils.modcore;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
