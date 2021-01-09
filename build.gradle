@@ -35,6 +35,8 @@ minecraft {
 
 dependencies {
     compile('com.fathzer:javaluator:latest.integration')
+    compile('com.vdurmont:semver4j:3.1.0')
+    compile('com.github.kevinsawicki:http-request:6.0')
     provided files("libs/modcore.jar")
 }
 
@@ -48,7 +50,9 @@ jar {
         from {
             configurations.compile
                 .findAll {
-                    it.getAbsolutePath().contains("com.fathzer")
+                    it.getAbsolutePath().contains("com.fathzer") ||
+                            it.getAbsolutePath().contains('com.vdurmont') ||
+                            it.getAbsolutePath().contains('com.github.kevinsawicki')
                 }
                 .collect { it.isDirectory() ? it : zipTree(it) }
         }
