@@ -1,17 +1,18 @@
 package com.tyman.mcutils.utils;
 
-import com.google.common.collect.Sets;
-import com.tyman.mcutils.config.MCUtilsConfig;
+//import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
+import net.minecraft.command.ICommand;
+import net.minecraftforge.client.ClientCommandHandler;
 
 import java.util.List;
-import java.util.Set;
+//import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
 
-    public static final Set<String> sb_in_langs = Sets.newHashSet("SKYBLOCK","\u7A7A\u5C9B\u751F\u5B58", "\u7A7A\u5CF6\u751F\u5B58");
+//    public static final Set<String> sb_in_langs = Sets.newHashSet("SKYBLOCK","\u7A7A\u5C9B\u751F\u5B58", "\u7A7A\u5CF6\u751F\u5B58");
 
     public static Pattern lobbyRegex = Pattern.compile("(mini|mega|m|M)([0-9]{1,3}[A-Z])");
 
@@ -66,5 +67,22 @@ public class Utils {
             return found;
         }
         return false;
+    }
+
+    public static void addCommands() {
+        String[] commands = {
+                "Math",
+                "MCUtils",
+                "UpdateCheck"
+        };
+        for (String command : commands) {
+            try {
+                ClientCommandHandler.instance.registerCommand(
+                        (ICommand) Class.forName("com.tyman.mcutils.commands." + command + "Command").newInstance()
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -2,18 +2,15 @@ package com.tyman.mcutils;
 
 import com.tyman.mcutils.gui.InventoryHud;
 import com.tyman.mcutils.gui.SlayerHealthHud;
-import com.tyman.mcutils.utils.UpdateChecker;
-import com.tyman.mcutils.commands.MathCommand;
 import com.tyman.mcutils.config.MCUtilsConfig;
-import com.tyman.mcutils.commands.MCUtilsCommand;
 import com.tyman.mcutils.modcore.ModCoreInstaller;
 import static com.tyman.mcutils.utils.UpdateChecker.*;
 
+import com.tyman.mcutils.utils.Utils;
 import net.minecraft.client.Minecraft;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -45,8 +42,7 @@ public class MCUtilsMod
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        ClientCommandHandler.instance.registerCommand(new MathCommand(this));
-        ClientCommandHandler.instance.registerCommand(new MCUtilsCommand(this));
+        Utils.addCommands();
         MinecraftForge.EVENT_BUS.register(new SlayerHealthHud());
         MinecraftForge.EVENT_BUS.register(new InventoryHud());
         // broken features brrrrrrrr

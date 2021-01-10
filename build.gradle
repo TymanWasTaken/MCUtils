@@ -33,10 +33,15 @@ minecraft {
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
+configurations {
+    lib // A way to specify which dependencies to include in the jar
+    implementation.extendsFrom(lib)
+}
+
 dependencies {
-    compile('com.fathzer:javaluator:latest.integration')
-    compile('com.vdurmont:semver4j:3.1.0')
-    compile('com.github.kevinsawicki:http-request:6.0')
+    lib('com.fathzer:javaluator:latest.integration')
+    lib('com.vdurmont:semver4j:3.1.0')
+    lib('com.github.kevinsawicki:http-request:6.0')
     provided files("libs/modcore.jar")
 }
 
@@ -46,16 +51,9 @@ jar {
                 "ModSide": "CLIENT",
                 "FMLCorePluginContainsFMLMod": "Yes, yes it does"
     }
-    jar {
-        from {
-            configurations.compile
-                .findAll {
-                    it.getAbsolutePath().contains("com.fathzer") ||
-                            it.getAbsolutePath().contains('com.vdurmont') ||
-                            it.getAbsolutePath().contains('com.github.kevinsawicki')
-                }
+    from {
+        configurations.lib
                 .collect { it.isDirectory() ? it : zipTree(it) }
-        }
     }
 }
 

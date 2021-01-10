@@ -1,42 +1,28 @@
 package com.tyman.mcutils.commands;
 
-import com.tyman.mcutils.MCUtilsMod;
+import com.tyman.mcutils.BasicCommand;
 import com.tyman.mcutils.utils.MathEvaluator;
-import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
-public class MathCommand extends CommandBase {
+@SuppressWarnings("unused")
+public class MathCommand extends BasicCommand {
 
-    MCUtilsMod mod;
-
-    public MathCommand(MCUtilsMod mod) {
-        this.mod = mod;
+    public MathCommand() {
+        super("math", new Object[]{"gt", 0});
     }
 
     @Override
-    public String getCommandName() {
-        return "math";
-    }
-
-    @Override
-    public String getCommandUsage(ICommandSender iCommandSender) {
-        return "math";
-    }
-
-    @Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender)
-    {
-        return true;
-    }
-
-
-    @Override
-    public void processCommand(ICommandSender sender, String[] args) {
+    public void execute(ICommandSender sender, String[] args) {
         MathEvaluator evaluator = new MathEvaluator();
-        Double evaluation = evaluator.evaluate(String.join(" ",args));
-        sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED  + "Result: " + EnumChatFormatting.AQUA + evaluation.toString()));
+        String expr = String.join(" ", args);
+        try {
+            Double evaluation = evaluator.evaluate(String.join(" ",args));
+            sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED  + "Result: " + EnumChatFormatting.AQUA + evaluation.toString()));
+        } catch (IllegalArgumentException e) {
+            sender.addChatMessage(new ChatComponentText("Invalid expression!"));
+        }
     }
 }

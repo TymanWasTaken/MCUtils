@@ -1,15 +1,11 @@
 package com.tyman.mcutils.utils;
 
 import com.github.kevinsawicki.http.HttpRequest;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import com.vdurmont.semver4j.Semver;
-
 import com.tyman.mcutils.MCUtilsMod;
+import com.vdurmont.semver4j.Semver;
 import org.lwjgl.opengl.Display;
 
 import javax.swing.*;
@@ -28,17 +24,34 @@ public class UpdateChecker {
             String GITHUB_RELEASES_API = "https://api.github.com/repos/TymanWasTaken/MCUtils/releases";
             String apiResponse = HttpRequest.get(GITHUB_RELEASES_API).body();
             JsonArray parsed = new JsonParser().parse(apiResponse).getAsJsonArray();
-            JsonObject latestRelease = parsed.get(0).getAsJsonObject();
-            Semver latestVersion = new Semver(latestRelease.get("tag_name").getAsString() + (latestRelease.get("prerelease").getAsBoolean() ? "-beta" : ""));
             Semver currentVersion = new Semver(MCUtilsMod.VERSION);
             String updateTitle;
             UpdateStatus returnStatus;
-            if (latestVersion.isGreaterThan(currentVersion) && latestVersion.isStable()) {
+            Semver latestStableVer = null;
+            Semver latestPreVer = null;
+            Semver curVer;
+            for (JsonElement release : parsed) {
+                curVer = new Semver(release.getAsJsonObject().get("tag_name").getAsString());
+
+                if (latestPreVer == null && !curVer.isStable())
+                    latestPreVer = curVer;
+                else if (!curVer.isStable() && curVer.isGreaterThan(latestPreVer))
+                    latestPreVer = curVer;
+
+                if (latestStableVer == null && curVer.isStable())
+                    latestStableVer = curVer;
+                else if (curVer.isStable() && curVer.isGreaterThan(latestStableVer))
+                    latestStableVer = curVer;
+            }
+            Semver latestVersion;
+            if (latestStableVer != null && latestStableVer.isGreaterThan(currentVersion)) {
                 updateTitle = "New stable MCUtils release";
                 returnStatus = UpdateStatus.NEW_STABLE;
-            } else if (latestVersion.isGreaterThan(currentVersion) && !latestVersion.isStable() && !currentVersion.isStable()) {
+                latestVersion = latestStableVer;
+            } else if (latestPreVer != null && latestPreVer.isGreaterThan(currentVersion) && !currentVersion.isStable()) {
                 updateTitle = "New MCUtils prerelease";
                 returnStatus = UpdateStatus.NEW_PRE;
+                latestVersion = latestPreVer;
             } else {
                 return UpdateStatus.UP_TO_DATE;
             }
