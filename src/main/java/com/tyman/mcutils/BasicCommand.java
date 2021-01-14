@@ -54,7 +54,7 @@ public abstract class BasicCommand extends CommandBase {
                 this.execute(sender, args);
             } else {
                 String argModNice = "Exactly ";
-                switch ((String) argCount[1]) {
+                switch ((String) argCount[0]) {
                     case "eq":
                         argModNice = "Exactly ";
                         break;
