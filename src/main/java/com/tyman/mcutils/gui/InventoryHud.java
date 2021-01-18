@@ -4,6 +4,7 @@ import com.tyman.mcutils.config.MCUtilsConfig;
 import com.tyman.mcutils.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
@@ -23,6 +24,7 @@ public class InventoryHud {
         if (MCUtilsConfig.invHud && event.type == RenderGameOverlayEvent.ElementType.TEXT) {
             Minecraft mc = Minecraft.getMinecraft();
             EntityPlayerSP player = mc.thePlayer;
+            GuiIngame gui = Minecraft.getMinecraft().ingameGUI;
             List<ItemStack> invWithoutNull = Arrays.stream(player.inventory.mainInventory)
                     .filter(Objects::nonNull)
                     .collect(Collectors.toList());
@@ -36,10 +38,12 @@ public class InventoryHud {
             int color = Utils.getColorFromConfig(MCUtilsConfig.invHudColor);
             mc.fontRendererObj.drawString(fullSlots + "/36 slots filled", x, y, color, true);
             if (fullSlots >= MCUtilsConfig.invWarningThreshold && !warningShown) {
-                player.playSound("note.bass", 1, 1);
+                player.playSound("random.orb", 1, 0.25F);
                 // change the colors if you dont like it, i personally think the gold doesnt match with red
-                // or you can make the whole thing not in chat and it shows up as a gui thing
+                // skidded from tom's solution from some mod from forums
                 player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + "[MCUtils] " + EnumChatFormatting.RED + "Inventory slots warning!"));
+                gui.displayTitle(EnumChatFormatting.RED + "Inventory space warning", null, 0,2,1);
+                gui.displayTitle(null, "Clear some space.", 0,2,1);
                 warningShown = true;
             }
             if (fullSlots < MCUtilsConfig.invWarningThreshold) {
