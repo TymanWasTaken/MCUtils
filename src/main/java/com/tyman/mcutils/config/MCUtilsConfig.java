@@ -104,15 +104,15 @@ public class MCUtilsConfig extends Vigilant {
     )
     public static int invHudColor;
 
-// @Property(
-//         type = PropertyType.SLIDER,
-//         name = "Inventory almost full warning threshold",
-//         category = "Gui",
-//         subcategory = "Inventory",
-//         description = "How many slots full to show the warning",
-//         max = 36
-// )
-// public static int invWarningThreshold;
+    @Property(
+         type = PropertyType.SLIDER,
+         name = "Inventory Space Warning Threshold",
+         category = "Gui",
+         subcategory = "Inventory",
+         description = "How many slots full to show the warning",
+         max = 36
+    )
+    public static int invWarningThreshold;
 
     /*******************
             QOL
