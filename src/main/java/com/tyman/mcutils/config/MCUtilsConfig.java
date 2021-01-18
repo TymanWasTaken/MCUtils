@@ -109,7 +109,7 @@ public class MCUtilsConfig extends Vigilant {
          name = "Inventory Space Warning Threshold",
          category = "Gui",
          subcategory = "Inventory",
-         description = "How many slots full to show the warning (1-35 Torture, 36 Off)",
+         description = "How many slots full to show the warning",
          max = 36
     )
     public static int invWarningThreshold;
