@@ -1,0 +1,8 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "com.tyman.mcutils.mixin",
+  "mixins": [
+    "MixinItemStack"
+  ],
+  "verbose": true
+}

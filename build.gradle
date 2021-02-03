@@ -6,19 +6,30 @@ buildscript {
             url = "https://files.minecraftforge.net/maven"
         }
 
+        maven {
+            name = "spongepowered"
+            url = "https://repo.spongepowered.org/maven"
+        }
+
         flatDir dirs: 'libs'
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT"
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'org.spongepowered.mixin'
 
 version = "1.0.3"
 group= "com.tyman.mcutils" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mcutils"
 
 sourceCompatibility = targetCompatibility = 1.8
+
+mixin {
+    add sourceSets.main, "mixins.mcutils.refmap.json"
+}
 
 minecraft {
     version = "1.8.9-11.15.1.2318-1.8.9"
@@ -31,6 +42,10 @@ minecraft {
     // simply re-run your setup task after changing the mappings to update your workspace.
     mappings = "stable_22"
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+
+    clientJvmArgs += "-Dfml.coreMods.load=com.tyman.mcutils.tweaker.FMLLoadingPlugin"
+    clientRunArgs += "--mixin mixins.mcutils.json"
+
 }
 
 configurations {
@@ -38,18 +53,31 @@ configurations {
     implementation.extendsFrom(lib)
 }
 
+repositories {
+    maven { url = "https://repo.spongepowered.org/maven" }
+}
+
 dependencies {
     lib('com.fathzer:javaluator:latest.integration')
     lib('com.vdurmont:semver4j:3.1.0')
     lib('com.github.kevinsawicki:http-request:6.0')
     provided files("libs/modcore.jar")
+    lib('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
+        exclude module: 'guava'
+        exclude module: 'commons-io'
+        exclude module: 'gson'
+    }
 }
 
 jar {
     manifest {
-        attributes "FMLCorePlugin": "com.tyman.mcutils.modcore.FMLLoadingPlugin",
-                "ModSide": "CLIENT",
-                "FMLCorePluginContainsFMLMod": "Yes, yes it does"
+        attributes "FMLCorePlugin": "com.tyman.mcutils.tweaker.FMLLoadingPlugin"
+        attributes "ModSide": "CLIENT"
+        attributes "FMLCorePluginContainsFMLMod": "Yes, yes it does"
+        attributes "ForceLoadAsMod": "true"
+        attributes "TweakClass": "org.spongepowered.asm.launch.MixinTweaker"
+        attributes "TweakOrder": "0"
+        attributes "MixinConfigs": "mixins.mcutils.json"
     }
     from {
         configurations.lib

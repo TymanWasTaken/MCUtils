@@ -7,8 +7,12 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.command.ICommand;
 import net.minecraftforge.client.ClientCommandHandler;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 //import java.util.Set;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,5 +106,16 @@ public class Utils {
         GL11.glTranslated(0, 0, 1);
         Gui.drawRect(x, y, x + 16, y + 16, colour);
         GL11.glTranslated(0, 0, -1);
+    }
+
+    public static String readFile(File file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
+        List<String> lines = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            String data = scanner.nextLine();
+            lines.add(data);
+        }
+        scanner.close();
+        return String.join("\n", lines);
     }
 }

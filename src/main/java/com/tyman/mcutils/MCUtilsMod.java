@@ -10,11 +10,15 @@ import static com.tyman.mcutils.utils.UpdateChecker.*;
 import com.tyman.mcutils.utils.Utils;
 import net.minecraft.client.Minecraft;
 
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import java.io.File;
+import java.io.IOException;
 
 @Mod(modid = MCUtilsMod.MODID, version = MCUtilsMod.VERSION)
 public class MCUtilsMod
@@ -22,6 +26,8 @@ public class MCUtilsMod
     public static final String MODID = "mcutils";
     public static final String VERSION = "1.0.3";
     public static UpdateStatus updateStatus;
+    public static File itemConfigDir = new File(Loader.instance().getConfigDir().getAbsolutePath() + "/items");
+    public static File mainItemCfgFile = new File(itemConfigDir.getAbsolutePath() + "/main.json");
 
     private final MCUtilsConfig config = new MCUtilsConfig();
 
@@ -47,8 +53,17 @@ public class MCUtilsMod
         MinecraftForge.EVENT_BUS.register(new SlayerHealthHud());
         MinecraftForge.EVENT_BUS.register(new InventoryHud());
         MinecraftForge.EVENT_BUS.register(new FairySoulGui());
-        // broken features brrrrrrrr
+        // broken features go brrrrrrrr
         // MinecraftForge.EVENT_BUS.register(new HideHubPlayers());
         ModCoreInstaller.initializeModCore(Minecraft.getMinecraft().mcDataDir);
+
+        if (!itemConfigDir.isDirectory()) {
+            itemConfigDir.mkdir();
+        }
+        try {
+            mainItemCfgFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
