@@ -129,6 +129,17 @@ public class MCUtilsConfig extends Vigilant {
     )
     public static boolean hideHubPlayers;
 
+    // Inventory
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Add colors to fairy soul quest menu",
+            description = "Highlighs finished areas green, not yet finished ones orange, and not started ones red.",
+            category = "QOL",
+            subcategory = "Inventory"
+    )
+    public static boolean showFairySoulQuestColors;
+
     public MCUtilsConfig() {
         super(new File("./config/mcutils.toml"));
         initialize();

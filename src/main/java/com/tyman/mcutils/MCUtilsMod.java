@@ -1,5 +1,6 @@
 package com.tyman.mcutils;
 
+import com.tyman.mcutils.gui.FairySoulGui;
 import com.tyman.mcutils.gui.InventoryHud;
 import com.tyman.mcutils.gui.SlayerHealthHud;
 import com.tyman.mcutils.config.MCUtilsConfig;
@@ -45,6 +46,7 @@ public class MCUtilsMod
         Utils.addCommands();
         MinecraftForge.EVENT_BUS.register(new SlayerHealthHud());
         MinecraftForge.EVENT_BUS.register(new InventoryHud());
+        MinecraftForge.EVENT_BUS.register(new FairySoulGui());
         // broken features brrrrrrrr
         // MinecraftForge.EVENT_BUS.register(new HideHubPlayers());
         ModCoreInstaller.initializeModCore(Minecraft.getMinecraft().mcDataDir);
