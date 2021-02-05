@@ -118,12 +118,12 @@ public class MCUtilsConfig extends Vigilant {
             QOL
     ********************/
 
-    // Things
+    // Render
 
     @Property(
             type = PropertyType.SWITCH,
             name = "Hide players in the hub",
-            description = "Stops rendering all entities in the hub (KINDA BROKEN)",
+            description = "Stops rendering all entities in the hub (Disabled because it doesn't work)",
             category = "QOL",
             subcategory = "Things"
     )

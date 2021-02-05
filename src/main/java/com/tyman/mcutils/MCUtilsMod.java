@@ -1,6 +1,7 @@
 package com.tyman.mcutils;
 
 import com.tyman.mcutils.chat.CakeMessageChatEvent;
+import com.tyman.mcutils.gui.ChronomatronGui;
 import com.tyman.mcutils.gui.FairySoulGui;
 import com.tyman.mcutils.gui.InventoryHud;
 import com.tyman.mcutils.gui.SlayerHealthHud;
@@ -49,6 +50,7 @@ public class MCUtilsMod
         MinecraftForge.EVENT_BUS.register(new SlayerHealthHud());
         MinecraftForge.EVENT_BUS.register(new InventoryHud());
         MinecraftForge.EVENT_BUS.register(new FairySoulGui());
+        MinecraftForge.EVENT_BUS.register(new ChronomatronGui());
         MinecraftForge.EVENT_BUS.register(new CakeMessageChatEvent());
         // broken features brrrrrrrr
         // MinecraftForge.EVENT_BUS.register(new HideHubPlayers());
