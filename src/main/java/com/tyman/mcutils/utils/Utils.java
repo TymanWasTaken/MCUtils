@@ -2,16 +2,20 @@ package com.tyman.mcutils.utils;
 
 //import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.command.ICommand;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.ClientCommandHandler;
 
+import java.time.Duration;
 import java.util.List;
 //import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.lwjgl.opengl.GL11;
 
 public class Utils {
@@ -102,5 +106,51 @@ public class Utils {
         GL11.glTranslated(0, 0, 1);
         Gui.drawRect(x, y, x + 16, y + 16, colour);
         GL11.glTranslated(0, 0, -1);
+    }
+
+    public static void sendLines(String formatting, String... messages) {
+        EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+        for (String message : messages) {
+            player.addChatMessage(
+                    new ChatComponentText(formatting + message)
+            );
+        }
+    }
+
+    public static class Pair<F, S> {
+        private final F first;
+        private final S second;
+        Pair(F first, S second) {
+            this.first = first;
+            this.second = second;
+        }
+
+        public F getFirst() {
+            return first;
+        }
+
+        public S getSecond() {
+            return second;
+        }
+
+        public String toString() {
+            return "com.tyman.mcutils.utils.Utils$Pair[" + this.first + ", " + this.second + "]";
+        }
+    }
+
+    public static boolean containsItem(List<?> list, Object obj) {
+//        for (Object item : list) {
+//            if (item.equals(obj)) return true;
+//        }
+        return false;
+    }
+
+    /**
+     * Nicely formats a duration
+     * @param d The amount of seconds
+     * @return The formatted duration
+     */
+    public static String durationToString(double d) {
+        return DurationFormatUtils.formatDurationWords((long) (d * 1000L), true, true);
     }
 }

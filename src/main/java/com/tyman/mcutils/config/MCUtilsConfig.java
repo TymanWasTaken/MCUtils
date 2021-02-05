@@ -134,11 +134,31 @@ public class MCUtilsConfig extends Vigilant {
     @Property(
             type = PropertyType.SWITCH,
             name = "Add colors to fairy soul quest menu",
-            description = "Highlighs finished areas green, not yet finished ones orange, and not started ones red.",
+            description = "Highlights finished areas green, not yet finished ones orange, and not started ones red.",
             category = "QOL",
             subcategory = "Inventory"
     )
     public static boolean showFairySoulQuestColors;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Show warning when chronomatron is at max notes",
+            description = "Will highlight the round indicator red once you have hit the max amount of notes for max XP.",
+            category = "QOL",
+            subcategory = "Inventory"
+    )
+    public static boolean showChronomatronWarning;
+
+    // Chat
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Show messages left and time for Royal Resident",
+            description = "Will send a message in your chat showing the remaining messages needed, and the approximate time to go through them all.",
+            category = "QOL",
+            subcategory = "Chat"
+    )
+    public static boolean sendRoyalResidentMessages;
 
     public MCUtilsConfig() {
         super(new File("./config/mcutils.toml"));
