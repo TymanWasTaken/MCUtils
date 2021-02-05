@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class MCUtilsMod
 {
     public static final String MODID = "mcutils";
-    public static final String VERSION = "1.0.3";
+    public static final String VERSION = "1.0.4";
     public static UpdateStatus updateStatus;
 
     private final MCUtilsConfig config = new MCUtilsConfig();
