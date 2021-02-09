@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.command.ICommand;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.ClientCommandHandler;
@@ -103,9 +104,9 @@ public class Utils {
         // Move down when chest isn't 6 rows
         if (size != 90) y += (6 - (size - 36) / 9) * 9;
 
-        GL11.glTranslated(0, 0, 1);
+        GlStateManager.translate(0, 0, 1);
         Gui.drawRect(x, y, x + 16, y + 16, colour);
-        GL11.glTranslated(0, 0, -1);
+        GlStateManager.translate(0, 0, -1);
     }
 
     public static void sendLines(String formatting, String... messages) {
@@ -136,13 +137,6 @@ public class Utils {
         public String toString() {
             return "com.tyman.mcutils.utils.Utils$Pair[" + this.first + ", " + this.second + "]";
         }
-    }
-
-    public static boolean containsItem(List<?> list, Object obj) {
-//        for (Object item : list) {
-//            if (item.equals(obj)) return true;
-//        }
-        return false;
     }
 
     /**
