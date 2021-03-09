@@ -9,7 +9,7 @@ buildscript {
         flatDir dirs: 'libs'
     }
     dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT"
+        classpath "net.minecraftforge.gradle:ForgeGradle:4.1.0"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
