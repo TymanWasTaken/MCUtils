@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class SlayerHealthHud {
 
     static int tickAmount = 1;
-    private static final Pattern slayerMatch = Pattern.compile("\u2620 (Revenant Horror|Tarantula Broodfather|Sven Packmaster) ([0-9]+(?:\\.[0-9]+)?[Mk]?)\u2764");
+    private static final Pattern slayerMatch = Pattern.compile("\u2620 (Revenant Horror|Atoned Horror|Tarantula Broodfather|Sven Packmaster) ([0-9]+(?:\\.[0-9]+)?[Mk]?)\u2764");
     private String[] slayerHealth = null;
     //private static final ResourceLocation revHead = new ResourceLocation("mcutils", "revHead.png");
 
