@@ -2,7 +2,7 @@ buildscript {
     repositories {
         maven {
             name = "forge"
-            url = "https://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net/"
         }
         maven {
             name = "jitpack"
@@ -12,7 +12,7 @@ buildscript {
         flatDir dirs: 'libs'
     }
     dependencies {
-        classpath "com.github.asbyth:ForgeGradle:86b2392"
+        classpath "com.github.asbyth:forgegradle:8708bf3e01"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
