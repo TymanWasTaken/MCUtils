@@ -8,8 +8,6 @@ buildscript {
             name = "jitpack"
             url = "https://jitpack.io/"
         }
-
-        flatDir dirs: 'libs'
     }
     dependencies {
         classpath "com.github.asbyth:forgegradle:8708bf3e01"
@@ -34,6 +32,7 @@ minecraft {
     // simply re-run your setup task after changing the mappings to update your workspace.
     mappings = "stable_22"
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    clientRunArgs += "--tweakClass gg.essential.loader.stage0.EssentialSetupTweaker"
 }
 
 configurations {
@@ -41,18 +40,32 @@ configurations {
     implementation.extendsFrom(lib)
 }
 
+repositories {
+    maven {
+        name = "Sk1er"
+        url = "https://repo.sk1er.club/repository/maven-public/"
+    }
+    // The following are needed or gradle gets mad because it can't find essential's dependencies
+    maven {
+        name = "Jitpack"
+        url = "https://jitpack.io/"
+    }
+    maven { url 'https://repo.spongepowered.org/maven/' }
+}
+
 dependencies {
     lib('com.fathzer:javaluator:3.0.3')
     lib('com.vdurmont:semver4j:3.1.0')
     lib('com.github.kevinsawicki:http-request:6.0')
-    provided files("libs/modcore.jar")
+    lib('gg.essential:loader-launchwrapper:1.0.2')
+    implementation('gg.essential:Essential:1194-10809-SNAPSHOT')
 }
 
 jar {
     manifest {
-        attributes "FMLCorePlugin": "com.tyman.mcutils.modcore.FMLLoadingPlugin",
-                "ModSide": "CLIENT",
-                "FMLCorePluginContainsFMLMod": "Yes, yes it does"
+        attributes  "ModSide": "CLIENT",
+                "FMLCorePluginContainsFMLMod": "Yes, yes it does",
+                "TweakClass": "gg.essential.loader.stage0.EssentialSetupTweaker"
     }
     from {
         configurations.lib
@@ -79,3 +92,12 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+task moveResources {
+    doLast {
+        ant.move file: "${buildDir}/resources/main",
+                todir: "${buildDir}/classes/java"
+    }
+}
+moveResources.dependsOn processResources
+classes.dependsOn moveResources

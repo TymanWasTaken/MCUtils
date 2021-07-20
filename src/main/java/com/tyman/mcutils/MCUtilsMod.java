@@ -6,12 +6,9 @@ import com.tyman.mcutils.gui.FairySoulGui;
 import com.tyman.mcutils.gui.InventoryHud;
 import com.tyman.mcutils.gui.SlayerHealthHud;
 import com.tyman.mcutils.config.MCUtilsConfig;
-import com.tyman.mcutils.modcore.ModCoreInstaller;
 import static com.tyman.mcutils.utils.UpdateChecker.*;
 
-import com.tyman.mcutils.utils.CakeMessages;
 import com.tyman.mcutils.utils.Utils;
-import net.minecraft.client.Minecraft;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.common.MinecraftForge;
@@ -54,6 +51,5 @@ public class MCUtilsMod
         MinecraftForge.EVENT_BUS.register(new CakeMessageChatEvent());
         // broken features brrrrrrrr
         // MinecraftForge.EVENT_BUS.register(new HideHubPlayers());
-        ModCoreInstaller.initializeModCore(Minecraft.getMinecraft().mcDataDir);
     }
 }

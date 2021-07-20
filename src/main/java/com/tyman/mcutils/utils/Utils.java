@@ -1,6 +1,5 @@
 package com.tyman.mcutils.utils;
 
-//import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
@@ -10,18 +9,13 @@ import net.minecraft.command.ICommand;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.ClientCommandHandler;
 
-import java.time.Duration;
 import java.util.List;
-//import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.time.DurationFormatUtils;
-import org.lwjgl.opengl.GL11;
 
 public class Utils {
-
-//    public static final Set<String> sb_in_langs = Sets.newHashSet("SKYBLOCK","\u7A7A\u5C9B\u751F\u5B58", "\u7A7A\u5CF6\u751F\u5B58");
 
     public static Pattern lobbyRegex = Pattern.compile("(mini|mega|m|M)([0-9]{1,3}[A-Z])");
 
