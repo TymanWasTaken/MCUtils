@@ -57,7 +57,7 @@ dependencies {
     lib('com.fathzer:javaluator:3.0.3')
     lib('com.vdurmont:semver4j:3.1.0')
     lib('com.github.kevinsawicki:http-request:6.0')
-    lib('gg.essential:loader-launchwrapper:1.0.2')
+    lib('gg.essential:loader-launchwrapper:1.1.1')
     implementation('gg.essential:Essential:1194-10809-SNAPSHOT')
 }
 
